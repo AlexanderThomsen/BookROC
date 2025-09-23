@@ -1,0 +1,12 @@
+CREATE TABLE Books (
+    BookID INT IDENTITY(1,1) PRIMARY KEY,
+    Title NVARCHAR(100) NOT NULL,
+    Author NVARCHAR(50),
+    PublishedYear INT,
+    Rating DECIMAL(3,2),
+    ISBN NVARCHAR(100),
+    Genre NVARCHAR(100),
+    Description NVARCHAR(200),
+    Created_At DATETIME2 DEFAULT GETDATE(),
+    Updated_At DATETIME2 DEFAULT GETDATE()
+);
