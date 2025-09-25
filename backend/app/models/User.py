@@ -2,32 +2,39 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, EmailStr
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.orm import declarative_base
 
 # -------------------------------------
-# Dataklasse (intern repræsentation)
+# SQLAlchemy Base
+# -------------------------------------
+Base = declarative_base()
+
+# -------------------------------------
+# Dataklasse / ORM model
 # -------------------------------------
 @dataclass
-class User:
-    user_id: int
-    username: str
-    email: str
-    password_hash: str
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: Optional[datetime] = None
-    is_active: bool = True
+class User(Base):
+    __tablename__ = "Users"  # Bemærk stort 'U', matcher SQL Server
+    
+    UserID = Column(Integer, primary_key=True, autoincrement=True)
+    UserName = Column(String(50), nullable=False)
+    Email = Column(String(100), nullable=False, unique=True)
+    Password_Hash = Column(String(255), nullable=False)
+    Created_At = Column(DateTime, default=datetime.utcnow)
+    Updated_At = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    def to_dict(self) -> dict:
+    def to_dict(self):
         return {
-            "user_id": self.user_id,
-            "username": self.username,
-            "email": self.email,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat() if self.updated_at else None,
-            "is_active": self.is_active,
+            "UserID": self.UserID,
+            "UserName": self.UserName,
+            "Email": self.Email,
+            "Created_At": self.Created_At.isoformat() if self.Created_At else None,
+            "Updated_At": self.Updated_At.isoformat() if self.Updated_At else None,
         }
 
 # -------------------------------------
-# Pydantic-modeller til API
+# Pydantic modeller til API
 # -------------------------------------
 
 # Input-model: bruges når klient opretter en bruger
@@ -38,12 +45,11 @@ class UserCreate(BaseModel):
 
 # Output-model: bruges når vi returnerer en bruger fra API
 class UserRead(BaseModel):
-    user_id: int
+    userid: int
     username: str
     email: EmailStr
     created_at: datetime
     updated_at: Optional[datetime] = None
-    is_active: bool
 
     class Config:
         orm_mode = True
