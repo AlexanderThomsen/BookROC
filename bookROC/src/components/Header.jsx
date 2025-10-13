@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Header.css';
+import Logo from '../assets/Logo.png';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,7 +10,7 @@ function Header() {
   return (
     <header className="container">
       <div className="container-left">
-        <img src="https://via.placeholder.com/100x40?text=Logo" alt="Logo" />
+        <img src={Logo} alt="Logo" />
       </div>
 
       <div className="container-center desktop-menu">
