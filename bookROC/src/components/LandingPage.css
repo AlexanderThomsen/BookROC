@@ -1,0 +1,75 @@
+/* LandingPage.css */
+/* Wrapper fylder kun den plads den har brug for */
+.landing-in-wrapper {
+  flex: 1; /* fylder al tilgængelig plads mellem header og footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  padding-top: 100px; /* hvis header er fixed */
+  box-sizing: border-box;
+}
+
+
+/* Resten af din CSS forbliver den samme */
+.hero {
+  margin-bottom: 3rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #4b5563;
+  margin: 1rem 0;
+}
+
+.cta-button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background-color: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: #3730a3;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.feature-card {
+  text-align: center;
+  max-width: 250px;
+  flex: 1 1 200px;
+  padding: 2rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.feature-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #4b5563;
+}
