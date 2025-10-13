@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
-from app.models.User import User  # din User-model
+from app.models.User import User
 
 class UserService:
     def __init__(self):
@@ -17,9 +17,9 @@ class UserService:
     def create_user(self, username: str, email: str, password: str):
         """Opret en ny bruger"""
         new_user = User(
-            Username=username,
+            UserName=username,
             Email=email,
-            Password=password
+            Password_Hash=password
         )
         self.db.add(new_user)
         self.db.commit()

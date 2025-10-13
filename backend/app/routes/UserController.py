@@ -7,7 +7,7 @@ service = UserService()
 
 @router.post("/", response_model=UserRead, summary="Opret en ny bruger")
 def create_user(user: UserCreate):
-    return service.create_user(user)
+    return service.create_user(username= user.username, email= user.email, password=user.password)
 
 @router.get("/{user_id}", response_model=UserRead, summary="Hent en bruger efter ID")
 def get_user(user_id: int):

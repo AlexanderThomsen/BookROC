@@ -1,22 +1,22 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
+import urllib
 
+DB_SERVER = os.getenv("DB_SERVER")
+DB_NAME = os.getenv("DB_NAME")
+DB_DRIVER = os.getenv("DB_DRIVER")
 
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../.env"))
+if not all([DB_SERVER, DB_NAME, DB_DRIVER]):
+    missing = [v for v in ["DB_SERVER","DB_NAME","DB_DRIVER"] if not os.getenv(v)]
+    raise ValueError(f"Mangler miljøvariabler: {', '.join(missing)}")
 
-try:
-    DB_SERVER = os.getenv("DB_SERVER")
-    DB_NAME = os.getenv("DB_NAME")
-    DB_DRIVER = os.getenv("DB_DRIVER")
+driver_encoded = urllib.parse.quote_plus(DB_DRIVER)
 
-    DATABASE_URL = f"mssql+pyodbc://@{DB_SERVER}/{DB_NAME}?driver={DB_DRIVER}&trusted_connection=yes"
+DATABASE_URL = f"mssql+pyodbc://{DB_SERVER}/{DB_NAME}?driver={driver_encoded}&trusted_connection=yes"
 
-    engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=True, future=True)
 
-    Base = declarative_base()
+SessionLocal = sessionmaker(bind=engine, autoflush=False, future=True)
 
-    SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
-except Exception as ex:
-    print(f"exception in database.py: {ex}")
+Base = declarative_base()
