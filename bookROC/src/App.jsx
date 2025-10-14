@@ -1,19 +1,18 @@
-import Footer from "./components/Footer";
-import Header from "./components/header";
-import LandingPage from "./components/LandingPage";
-import "./App.css"; // global CSS
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppContent from './AppContent';
+import { AuthProvider } from './context/AuthContext';
+import "./App.css";
 
 function App() {
   return (
-    <div className="app-wrapper">
-      <Header />
-      <main className="landing-wrapper">
-        <LandingPage />
-      </main>
-      <Footer />
+    <div className="app-root">
+      <Router>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </Router>
     </div>
   );
 }
-
 
 export default App;

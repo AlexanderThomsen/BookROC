@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import Logo from '../assets/Logo.png';
 
@@ -20,7 +21,7 @@ function Header() {
       </div>
 
       <div className="container-right">
-        <div className="desktop-login item">Login</div>
+        <Link to="/login" className="desktop-login item">Login</Link>
 
         {/* Hamburger / X button */}
         <button className="mobile-menu-button" onClick={toggleMenu}>
@@ -33,7 +34,7 @@ function Header() {
           <div className="item" onClick={toggleMenu}>Hjem</div>
           <div className="item" onClick={toggleMenu}>Om</div>
           <div className="item" onClick={toggleMenu}>Kontakt</div>
-          <div className="item" onClick={toggleMenu}>Login</div>
+          <Link to="/login" className="item" onClick={toggleMenu}>Login</Link>
         </div>
       </div>
     </header>
