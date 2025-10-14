@@ -1,0 +1,26 @@
+.footer {
+  margin-top: auto; /* holder footeren nederst i flex-container */
+  background-color: #f5f5f5;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-nav a {
+  margin: 0 0.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}

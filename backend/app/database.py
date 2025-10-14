@@ -1,22 +1,31 @@
+# app/database.py
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
 
+# ------------------------------
+# LocalDB connection der virker
+# ------------------------------
+DB_NAME = os.getenv("DB_NAME", "BookROC")
 
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../.env"))
+# Denne connection string virker med din LocalDB
+DATABASE_URL = f"mssql+pyodbc://(LocalDB)\\MSSQLLocalDB/{DB_NAME}?driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes"
 
+print(f"[DEBUG] Using DATABASE_URL: {DATABASE_URL}")
+
+# Opret engine
+engine = create_engine(DATABASE_URL, echo=True, future=True)
+
+# ------------------------------
+# SQLAlchemy session & base
+# ------------------------------
+SessionLocal = sessionmaker(bind=engine, autoflush=False, future=True)
+Base = declarative_base()
+
+# Test connection ved startup
 try:
-    DB_SERVER = os.getenv("DB_SERVER")
-    DB_NAME = os.getenv("DB_NAME")
-    DB_DRIVER = os.getenv("DB_DRIVER")
-
-    DATABASE_URL = f"mssql+pyodbc://@{DB_SERVER}/{DB_NAME}?driver={DB_DRIVER}&trusted_connection=yes"
-
-    engine = create_engine(DATABASE_URL, echo=True)
-
-    Base = declarative_base()
-
-    SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
-except Exception as ex:
-    print(f"exception in database.py: {ex}")
+    with engine.connect() as conn:
+        print("[SUCCESS] Database connection verified!")
+except Exception as e:
+    print(f"[ERROR] Database connection failed: {e}")
+    raise

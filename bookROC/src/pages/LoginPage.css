@@ -1,0 +1,69 @@
+/* Wrapper: fylder hele skærmen og bruger flex */
+.login-page-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* sikrer ingen scroll */
+  position: fixed; /* forhindrer scroll på body niveau */
+  top: 0;
+  left: 0;
+}
+
+/* Tilføj disse styles til body for at forhindre scroll */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Venstre side: illustration */
+.login-illustration {
+  flex: 1;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: center;
+  min-height: 0;
+  overflow: hidden; /* tilføj denne linje */
+}
+
+/* Højre side: login form */
+.login-form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  min-height: 0;
+  overflow: hidden; /* tilføj denne linje */
+}
+
+/* RESPONSIVE: kun form på mobil */
+@media (max-width: 768px) {
+  .login-page-wrapper {
+    flex-direction: column;
+    height: 100vh;
+    position: fixed; /* tilføj denne linje */
+  }
+
+  .login-illustration {
+    display: none;
+  }
+
+  .login-form-container {
+    width: 100%;
+    height: 100vh;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    overflow: auto; /* tillad scroll i formen hvis nødvendigt */
+  }
+  
+  /* Forhindre scroll på body i mobil */
+  body {
+    overflow: hidden;
+  }
+}
