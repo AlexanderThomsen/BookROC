@@ -41,6 +41,7 @@ def fetch_books():
                     ISBN=isbn,
                     Genre=genre,
                     Description=b.get("description", ""),
+                    ImageUrl=b.get("book_image"),  # <-- tilføjet
                     Created_At=datetime.now(timezone.utc),
                     Updated_At=datetime.now(timezone.utc)
                 )
