@@ -45,9 +45,8 @@ const HomeHeader = () => {
         <div className={`header-dropdown ${menuOpen ? 'open' : ''}`}>
           <Link to="/profile">Profil</Link>
           <Link to="/settings">Indstillinger</Link>
-          <Link to="/logout">Log ud</Link>
+          <Link to="/logout" className="logout-link">Log ud</Link>
         </div>
-
 
         {/* Hamburger / X button */}
         <button className="mobile-menu-button" onClick={toggleMenu}>
