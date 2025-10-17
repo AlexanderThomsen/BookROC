@@ -4,7 +4,6 @@ html, body, #root {
   padding: 0;
 }
 
-/* 👇 Fiks AuthProvider flex-kæden */
 #root > * {
   min-height: 100vh;
   display: flex;
@@ -17,7 +16,6 @@ html, body, #root {
   flex-direction: column;
 }
 
-/* 👇 Gør landing-wrapper til en flex container */
 .landing-wrapper {
   flex: 1;
   display: flex;

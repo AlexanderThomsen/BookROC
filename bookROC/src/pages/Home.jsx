@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/sidebar";
-import HomeCardBooks from "../components/HomeCardBooks";
+import HomeHeader from "../components/HomeHeader";
 import "./Home.css";
+import HomePage from '../components/HomePage';
 
 const Home = ({ userId }) => {
   const [userName, setUserName] = useState("");
@@ -17,18 +17,11 @@ const Home = ({ userId }) => {
 
   return (
     <div className="home-container">
-      <Sidebar />
-      <div className="home-main">
-        <h1>Velkommen {userName || "til BookROC"}!</h1>
-
-        <section className="section">
-          <h2>Nyeste bøger</h2>
-          <HomeCardBooks />
-        </section>
-
-        {/* Anbefalede bøger og seneste anmeldelser kan forblive som nu */}
+        <HomeHeader />
+        <div className="home-main">
+          <HomePage />
+        </div>
       </div>
-    </div>
   );
 };
 

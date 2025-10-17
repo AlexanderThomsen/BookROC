@@ -1,31 +1,14 @@
-import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import LoginPage from "../pages/LoginPage";
+import Home from "../pages/Home";
+import LandingPage from "../components/LandingPage";
 
-const LoginPage = () => {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+// Public routes
+export const publicRoutes = [
+  { path: "/", element: <LandingPage />, hideHeader: false },
+  { path: "/login", element: <LoginPage />, hideHeader: true },
+];
 
-  const handleGoogleLogin = async () => {
-    // Her skal du tilføje din Google login logik
-    // Dette er bare et eksempel med mock-data:
-    const googleUser = {
-      id: '123',
-      name: 'Alexander Thomsen',
-      email: 'alex@example.com',
-      token: 'abc123',
-    };
-
-    login(googleUser); // Gemmer user i context + localStorage
-    navigate('/home'); // Send til privat side
-  };
-
-  return (
-    <div style={{ padding: 50 }}>
-      <h1>Login</h1>
-      <button onClick={handleGoogleLogin}>Login med Google</button>
-    </div>
-  );
-};
-
-export default LoginPage;
+// Private routes
+export const privateRoutes = [
+  { path: "/home", element: <Home />, hideHeader: true },
+];

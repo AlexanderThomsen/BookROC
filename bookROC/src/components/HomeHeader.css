@@ -1,0 +1,99 @@
+/* ===== Header ===== */
+.home-header {
+  display: flex;
+  justify-content: space-between; /* Venstre, midt, højre */
+  align-items: center;
+  padding: 0 1rem;
+  height: 80px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Venstre: Logo */
+.home-header-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Midten: Menu knapper */
+.home-menu-button {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.home-menu-button button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.home-menu-button button.active {
+  border-bottom: 2px solid #333; /* marker aktiv knap */
+}
+
+/* Højre: Login + SVG + Hamburger */
+.home-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* SVG-ikon */
+.header-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.header-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.header-dropdown {
+  position: absolute;
+  right: 20px;
+  top: 60px; /* lidt under headeren */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  z-index: 100;
+
+  /* Fade-effekt */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px); /* lidt op for smooth effekt */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.header-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* glide ned til normal position */
+}
+
+.header-dropdown a {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.header-dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Hamburger knap */
+.mobile-menu-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

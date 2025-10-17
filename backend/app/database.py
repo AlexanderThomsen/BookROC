@@ -9,7 +9,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 DB_NAME = os.getenv("DB_NAME", "BookROC")
 
 # Denne connection string virker med din LocalDB
-DATABASE_URL = f"mssql+pyodbc://(LocalDB)\\MSSQLLocalDB/{DB_NAME}?driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes"
+DATABASE_URL = f"mssql+pyodbc://(LocalDB)\\MSSQLLocalDB/{DB_NAME}?driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes&MARS_Connection=yes"
+
 
 print(f"[DEBUG] Using DATABASE_URL: {DATABASE_URL}")
 
